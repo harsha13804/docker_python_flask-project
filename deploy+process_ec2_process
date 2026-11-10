@@ -114,7 +114,7 @@ source myvenv/bin/activate # to activate
 
 python3 -m pip install gunicorn
 gunicorn --version
-gunicorn --workers 3 --bind 0.0.0.0:5000 app:app
+gunicorn --workers 3 --bind 0.0.0.0:5000 app:app                  #run app
 
 
 vi /etc/systemd/system/flaskapp.service
