@@ -57,7 +57,7 @@ pm2 delete myapp
 
 
 ######################### SystemD ######################################
-1. vi /root/docker_python_flask-project
+1. sudo vi /etc/systemd/system/myapp.service
 
 2.
 [Unit]
