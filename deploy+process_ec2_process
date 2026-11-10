@@ -111,4 +111,39 @@ source myvenv/bin/activate # to activate
 
 
 ########################### gunicorn ###############################
-             try
+
+python3 -m pip install gunicorn
+gunicorn --version
+gunicorn --workers 3 --bind 0.0.0.0:5000 app:app
+
+
+vi /etc/systemd/system/flaskapp.service
+
+[Unit]
+Description=Gunicorn Flask Application
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/root
+ExecStart=/usr/local/bin/gunicorn --workers 3 --bind 0.0.0.0:5000 app:app
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+
+
+which gunicorn
+systemctl daemon-reload
+
+systemctl start flaskapp
+
+systemctl enable flaskapp
+
+systemctl status flaskapp
+
+journalctl -u flaskapp -f   #view logs
+
+systemctl stop flaskapp
+systemctl restart flaskapp
